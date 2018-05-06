@@ -5,9 +5,9 @@ module.exports = (stylelintResults) => {
                             .att('package', 'stylelint.rules');
   const testSuites = stylelintResults.map((testSuite) => parseSuite(testSuite));
 
-  return xmlRoot
-    .element(testSuites)
-    .end({ pretty: true });
+  return testSuites.length > 0
+    ? xmlRoot.element(testSuites).end({ pretty: true })
+    : xmlRoot.end({ pretty: true });    
 };
 
 function parseSuite(testSuite) {
